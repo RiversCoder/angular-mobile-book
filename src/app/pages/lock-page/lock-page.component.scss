@@ -3,4 +3,13 @@
 @import "src/libs/mixin.scss";
 
 /* 锁屏页面 */
-.lock-page{ width: 100%; height: 100%; background-color: #333;color: #fff; position: absolute;top: 0;left: 0;bottom: 0;right: 0;}
+.lock-page{ 
+    @include wh(100%, 100%); background-color: #333;color: #fff; position: fixed;top: 0;left: 0;bottom: 0;right: 0;
+    /* 背景 */
+    .lp-background{
+        @include wh(100%, 100%); @include bgImg('./images/lock_bg.jpg');@include ab(0,0);
+    }
+    .lp-show{
+        
+    }
+}

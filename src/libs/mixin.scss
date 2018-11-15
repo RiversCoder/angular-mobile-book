@@ -1,0 +1,21 @@
+@mixin wh ($w, $h) {
+    width: $w;
+    height: $h;
+}
+
+@mixin ab($left, $top){
+    position: absolute;
+    left: $left;
+    top: $top;
+}
+
+@mixin bgColor($color){
+    background-color: $color;
+}
+
+@mixin bgImg($url){
+    background-image: url($url);
+    background-position: 0 0;
+    background-size: 100% 100%;    
+}
+
