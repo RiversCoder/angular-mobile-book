@@ -8,12 +8,60 @@
 
     <!-- 展示层 -->
     <section class="lp-show">
-        show
+        <section class="lp-hg">
+            <h3>
+                <time class="lp-duration">{{lock.time}}</time>
+            </h3>
+            <h4>
+                <span class="lp-detail-time">5年12月2个星期</span>
+            </h4>
+        </section>
     </section>
 
     <!-- 交互层 -->
     <section class="lp-interaction">
-        interaction
+        
+        <!-- 交互半透明背景层 -->
+        <div class="lpi-bg"></div>
+
+        <!-- 键盘层 -->
+        <div class="lpi-keyboard">
+
+            <!-- 显示信息层 -->
+            <div class="info-board">
+                <span>Pin is 1234</span>
+            </div>
+
+            <!-- 密码显示框 -->
+            <div class="psw-board">
+                <span class="psw-input"></span>
+                <span class="psw-btn"></span>
+            </div>
+
+            <!-- 数字键盘 -->
+            <div class="num-board">
+                <ul class="num-board-wrap">
+                    <li class="nbw-item">
+                        <span>1</span>
+                        <em>ABC</em>
+                    </li>
+                    <li class="nbw-item">
+                        <span>2</span>
+                        <em>ABC</em>
+                    </li>
+                    <li class="nbw-item">
+                        <span>3</span>
+                        <em>ABC</em>
+                    </li>
+                    <li class="nbw-item">
+                        <span>4</span>
+                        <em>ABC</em>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+
     </section>
 
 </div>

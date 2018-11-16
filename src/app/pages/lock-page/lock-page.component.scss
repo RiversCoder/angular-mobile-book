@@ -10,6 +10,42 @@
         @include wh(100%, 100%); @include bgImg('./images/lock_bg.jpg');@include ab(0,0);
     }
     .lp-show{
+        @include ab(0,0); @include wh(100%, 100%);
+
+        /* 时间展示信息 */
+        .lp-hg{
+            @include wh(70%,150px); @include bgColor(red); margin: 0 auto;margin-top: 150px;
+        }
         
+    }
+     /* 按键操作层 */
+    .lp-interaction{
+        @include ab(0,0); @include wh(100%, 100%);
+        .lpi-bg{
+             @include wh(100%, 100%); @include bgColor(rgba(0,0,0,0.8));@include ab(0,0);
+        }
+
+        /* 键盘部分 */
+        .lpi-keyboard{
+            @include whRem(750,892); position:fixed;left:0;bottom:0;@include pad(0,16);box-sizing: border-box;
+            .info-board{
+                @include whRem(718,92);@include bgColor(yellow);
+            }
+            .psw-board{
+                @include whRem(718,106);@include bgColor(pink);border-bottom: 2px solid rgba(255,255,255,0.8);
+            }
+            .num-board{
+                @include whRem(718,694);
+                .num-board-wrap{
+                    @include wh(100%,100%);display: flex;flex-wrap:wrap;position: relative;align-content: flex-start;
+                    .nbw-item{
+                        width:33.33%;height:calcs(134);@include bgColor(red);
+                    }
+                }
+            }
+
+        }
+
+
     }
 }

@@ -1,18 +1,48 @@
+
+// 计算rem
+@function calcs($value) {
+    @return ($value/$rem);  
+}
+
+
+//通用宽高
 @mixin wh ($w, $h) {
     width: $w;
     height: $h;
 }
 
+// rem宽高
+@mixin whRem($w, $h){
+    width: $w/$rem;
+    height: $h/$rem;
+}
+
+// padding 通用
+@mixin pad($top:0,$left:0){
+    padding: $top/$rem $left/$rem;
+}
+
+
+// 绝对定位 通用版
 @mixin ab($left, $top){
     position: absolute;
     left: $left;
     top: $top;
 }
 
+// rem 绝对定位
+@mixin abRem($left, $top){
+    position: absolute;
+    left: $left/$rem;
+    top: $top/$rem;
+}
+
+// 背景颜色
 @mixin bgColor($color){
     background-color: $color;
 }
 
+// 背景图片
 @mixin bgImg($url){
     background-image: url($url);
     background-position: 0 0;
