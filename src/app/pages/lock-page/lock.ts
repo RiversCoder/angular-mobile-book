@@ -7,8 +7,10 @@ export class Lock {
     weather?: string;
 
     constructor(){}
+}
 
 
-    
-    
+export class KeyBoard {
+
+    boards: Array<any>;
 }

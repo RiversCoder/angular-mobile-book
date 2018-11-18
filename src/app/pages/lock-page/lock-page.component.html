@@ -40,24 +40,21 @@
 
             <!-- 数字键盘 -->
             <div class="num-board">
+                
                 <ul class="num-board-wrap">
-                    <li class="nbw-item">
-                        <span>1</span>
-                        <em>ABC</em>
-                    </li>
-                    <li class="nbw-item">
-                        <span>2</span>
-                        <em>ABC</em>
-                    </li>
-                    <li class="nbw-item">
-                        <span>3</span>
-                        <em>ABC</em>
-                    </li>
-                    <li class="nbw-item">
-                        <span>4</span>
-                        <em>ABC</em>
+                    <li class="nbw-item" *ngFor="let board of keyBoard.boards" (click)="onClickBoard(board)">
+                        <span class="circle-mask" *ngIf="board.active"></span>
+                        <span>{{board.title}}</span>
+                        <em>{{board.detail}}</em>
                     </li>
                 </ul>
+                
+                <section class="num-board-footer">
+                    <span class="back-command">
+                         <span class="circle-mask"></span>
+                    </span>
+                </section>
+
             </div>
             
         </div>

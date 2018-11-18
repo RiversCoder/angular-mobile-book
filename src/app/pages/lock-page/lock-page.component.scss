@@ -2,7 +2,28 @@
 @import "src/libs/basic.scss";
 @import "src/libs/mixin.scss";
 
+
+
+/* 定义动画 */
+
+@keyframes keyBoardMotion{
+    0%{
+        transform: translateX(-50%) scale(0.95);
+        @include bgColor(rgba(255,255,255,0.15));
+    }
+    50%{
+        transform: translateX(-50%) scale(1.2);
+        @include bgColor(rgba(255,255,255,0.2));
+    }
+    100%{
+        transform: translateX(-50%) scale(0.95);
+        @include bgColor(rgba(255,255,255,0.15));
+    }
+}
+
+
 /* 锁屏页面 */
+
 .lock-page{ 
     @include wh(100%, 100%); background-color: #333;color: #fff; position: fixed;top: 0;left: 0;bottom: 0;right: 0;
     /* 背景 */
@@ -37,10 +58,56 @@
             .num-board{
                 @include whRem(718,694);
                 .num-board-wrap{
-                    @include wh(100%,100%);display: flex;flex-wrap:wrap;position: relative;align-content: flex-start;
+                    width:100%;height:calcs(550);display: flex;flex-wrap:wrap;position: relative;align-content: flex-start;
                     .nbw-item{
-                        width:33.33%;height:calcs(134);@include bgColor(red);
+                        width:33.33%;height:calcs(134);text-align:center;position: relative;
+                        span{
+                            font-size: calcs(39);display: block;margin-top: calcs(26);font-weight:500;
+                        }
+                        em{
+                            font-style: normal;font-size: calcs(22);display: block;font-weight:300;
+                        }
+                        .circle-mask{
+                            @include whRem(134,134);position: absolute;border-radius:50%;@include bgColor(rgba(255,255,255,0));
+                            left:50%;transform: translateX(-50%) scale(.3);margin-top:0;transition:.2s linear;
+                        }
+                        &:hover{
+                            .circle-mask{ 
+                                transform: translateX(-50%) scale(0.95); @include bgColor(rgba(255,255,255,0.15)); 
+                            }
+                        }
+                        &:active{
+                            .circle-mask{
+                                animation: keyBoardMotion ease .8s;
+                            }
+                        }
                     }
+
+                }
+                /* back */
+                .num-board-footer{
+                    width: 100%; height:calcs(134);
+                    .back-command{
+                        display:block;width:33.33%;height:calcs(134);position: relative;
+                        &::before{
+                            content:'';@include whRem(0,0);position: absolute;left:calcs(118);top:calc(50% - 20px);border-top:20px solid transparent;border-bottom:20px solid transparent;border-right:23px solid white;
+                        }
+                        .circle-mask{
+                            @include whRem(134,134);position: absolute;border-radius:50%;@include bgColor(rgba(255,255,255,0));
+                            left:55%;transform: translateX(-50%) scale(0.95);margin-top:0;transition:.2s linear;
+                        }
+                        &:hover{
+                            .circle-mask{ 
+                                transform: translateX(-50%) scale(0.95); @include bgColor(rgba(255,255,255,0.15)); 
+                            }
+                        }
+                        &:active{
+                            .circle-mask{
+                                animation: keyBoardMotion ease .8s;
+                            }
+                        }    
+                    }
+                    
                 }
             }
 
