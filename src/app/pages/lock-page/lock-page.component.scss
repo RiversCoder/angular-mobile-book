@@ -3,9 +3,7 @@
 @import "src/libs/mixin.scss";
 
 
-
 /* 定义动画 */
-
 @keyframes keyBoardMotion{
     0%{
         transform: translateX(-50%) scale(0.95);
@@ -23,7 +21,6 @@
 
 
 /* 锁屏页面 */
-
 .lock-page{ 
     @include wh(100%, 100%); background-color: #333;color: #fff; position: fixed;top: 0;left: 0;bottom: 0;right: 0;
     /* 背景 */
@@ -50,15 +47,24 @@
         .lpi-keyboard{
             @include whRem(750,892); position:fixed;left:0;bottom:0;@include pad(0,16);box-sizing: border-box;
             .info-board{
-                @include whRem(718,92);@include bgColor(yellow);
+                @include whRem(718,92);text-align: center;font-size: calcs(20);color:white;letter-spacing: calcs(5);line-height: calcs(92);
             }
-            .psw-board{
-                @include whRem(718,106);@include bgColor(pink);border-bottom: 2px solid rgba(255,255,255,0.8);
+            .pwd-board{
+                @include whRem(718,106);border-bottom: 2px solid rgba(255,255,255,0.2);padding: 0 calcs(10);box-sizing:border-box;
+                .pwd-input{
+                    display: block;@include wh(100%,100%);display: flex;flex-wrap: nowrap;justify-content:center;align-items:center;
+                    .pwd-input-text{
+                        display: block;@include bgColor(white);@include whRem(25,25);border-radius:50%;font-size:calcs(16);margin-right: calcs(12);
+                    }
+                }
+                .pwd-btn{
+
+                }
             }
             .num-board{
                 @include whRem(718,694);
                 .num-board-wrap{
-                    width:100%;height:calcs(550);display: flex;flex-wrap:wrap;position: relative;align-content: flex-start;
+                    width:100%;height:calcs(550);display: flex;flex-wrap:wrap;position: relative;align-content: flex-start;position: relative;top:calcs(15);
                     .nbw-item{
                         width:33.33%;height:calcs(134);text-align:center;position: relative;
                         span{
