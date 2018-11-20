@@ -29,17 +29,17 @@
 
             <!-- 显示信息层 -->
             <div class="info-board">
-                <span>Pin is 1234</span>
+                <span class="ib-text" [ngClass]="{'animated tada': keyBoard.openTip }">{{keyBoard.tips}}</span>
             </div>
 
             <!-- 密码显示框 -->
             <div class="pwd-board">
                 <span class="pwd-input">
-                    <i class="pwd-input-text">5</i>
-                    <i class="pwd-input-text">5</i>
-                    <i class="pwd-input-text">5</i>
+                    <i class="pwd-input-text animated" [ngClass]="{'bounceIn': (i==keyBoard.passWord.length-1) && keyBoard.enterPassword }" *ngFor="let pwd of keyBoard.passWord; index as i;"></i>
                 </span>
-                <span class="pwd-btn"></span>
+                <span class="pwd-btn" (click)="onClickDelete()">
+                    <span class="circle-mask"></span>
+                </span>
             </div>
 
             <!-- 数字键盘 -->

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css','../../node_modules/animate.css/animate.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   title = 'ng-my-app';
@@ -12,7 +13,6 @@ export class AppComponent implements OnInit {
       console.log('rem');
       this.initRem();
   }
-
 
   // 初始化移动端布局
   initRem() : void {

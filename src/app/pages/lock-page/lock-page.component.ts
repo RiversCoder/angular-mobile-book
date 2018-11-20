@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Lock , KeyBoard } from './lock'
 import { tool } from 'scripts/tool';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-lock-page',
@@ -13,16 +15,22 @@ export class LockPageComponent implements OnInit {
   //初始化时间逻辑
   lock: Lock = {
       title: '锁屏界面',
-      time: '12:56'
+      time: '12:56',
+      
   };
 
   // 初始化键盘逻辑
   keyBoard: KeyBoard = {
-    boards: []
+    boards: [],
+    tips: '',
+    openTip: false,
+    //初始化输入的密码
+    passWord: [],
+    //输入密码删除密码的状态
+    enterPassword: true
   };
 
-  constructor() { }
-
+  // 生命周期
   ngOnInit() {
       this.initDate();
       this.initKeyBoards();
@@ -69,9 +77,43 @@ export class LockPageComponent implements OnInit {
     this.keyBoard.boards = arr;
   }
 
-  // 点击 键盘获得的值
-  onClickBoard(board: any): void {
-    console.log(board);
+  // 显示提示
+  showTip(notice: string) : void {
+    this.keyBoard.tips = notice;
+    this.keyBoard.openTip = true;
+    $('.ib-text').removeClass('tada').addClass('tada');
   }
 
+  // 点击 键盘获得的值
+  onClickBoard(board: any): void {
+    // 点击的是数字
+    if(board.title.match(/^[0-9]{1}$/g)){
+      this.keyBoard.passWord.push(board.title); 
+    }else{
+      if(this.keyBoard.passWord.join('') == '1234'){
+        this.leaveMotion();
+      }else{
+        this.showTip('密码不对'+Math.random());
+      }
+    }
+    // 点击的是确定
+    this.keyBoard.enterPassword = true;
+
+  }
+
+  // 点击删除 输入的值
+  onClickDelete() : void {
+    if(this.keyBoard.passWord.length <= 0){
+      return;
+    }else{
+      //并非输入状态
+      this.keyBoard.enterPassword = false;
+      this.keyBoard.passWord.pop();
+    }
+  }  
+
+  //离开动画
+  leaveMotion() : void{
+
+  }
 }

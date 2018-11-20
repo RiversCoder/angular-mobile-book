@@ -50,7 +50,7 @@
                 @include whRem(718,92);text-align: center;font-size: calcs(20);color:white;letter-spacing: calcs(5);line-height: calcs(92);
             }
             .pwd-board{
-                @include whRem(718,106);border-bottom: 2px solid rgba(255,255,255,0.2);padding: 0 calcs(10);box-sizing:border-box;
+                @include whRem(718,106);border-bottom: 2px solid rgba(255,255,255,0.2);padding: 0 calcs(10);box-sizing:border-box;position: relative;
                 .pwd-input{
                     display: block;@include wh(100%,100%);display: flex;flex-wrap: nowrap;justify-content:center;align-items:center;
                     .pwd-input-text{
@@ -58,7 +58,21 @@
                     }
                 }
                 .pwd-btn{
-
+                    display: block;@include whRem(45,32);@include bgImg('./images/delete.png');position: absolute;right:calcs(50);top:50%;transform:translateY(-50%);
+                    .circle-mask{
+                        @include whRem(134,134);position: absolute;border-radius:50%;@include bgColor(rgba(255,255,255,0));
+                        left:50%;top:calcs(-52);transform: translateX(-50%) scale(0.3);margin-top:0;transition:.2s linear;
+                    }
+                    &:hover{
+                            .circle-mask{ 
+                            transform: translateX(-50%) scale(0.95); @include bgColor(rgba(255,255,255,0.15)); 
+                        }
+                    }
+                    &:active{
+                        .circle-mask{
+                            animation: keyBoardMotion ease .8s;
+                        }
+                    }
                 }
             }
             .num-board{
