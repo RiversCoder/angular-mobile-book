@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Lock , KeyBoard } from './lock'
+import { Lock , KeyBoard, kb } from './lock'
 import { tool } from 'scripts/tool';
 import * as $ from 'jquery';
 
@@ -15,19 +15,19 @@ export class LockPageComponent implements OnInit {
   //初始化时间逻辑
   lock: Lock = {
       title: '锁屏界面',
-      time: '12:56',
-      
+      time: '12:56'
   };
 
   // 初始化键盘逻辑
   keyBoard: KeyBoard = {
     boards: [],
-    tips: '',
+    tips: '12312312',
     openTip: false,
     //初始化输入的密码
     passWord: [],
     //输入密码删除密码的状态
-    enterPassword: true
+    enterPassword: true, 
+    tipAnimationName: 'tada'
   };
 
   // 生命周期
@@ -38,7 +38,7 @@ export class LockPageComponent implements OnInit {
   
   //初始化时间日期
   initDate() : void {
-     this.lock.time = tool.getAllDaysFromTo()+' DAY';
+     this.lock.time = tool.getAllDaysFromTo()+' Day';
   }
 
   // 初始化键盘数字 显示
@@ -78,27 +78,36 @@ export class LockPageComponent implements OnInit {
   }
 
   // 显示提示
-  showTip(notice: string) : void {
+  showTip(notice: string, animationName?: string) : void {
+    this.keyBoard.openTip = false;
     this.keyBoard.tips = notice;
-    this.keyBoard.openTip = true;
-    $('.ib-text').removeClass('tada').addClass('tada');
+    if(animationName){
+      this.keyBoard.tipAnimationName = animationName;
+    }
+    let t: number = window.setTimeout(()=>{
+      this.keyBoard.openTip = true;
+      window.clearTimeout(t);
+    },300);
   }
 
   // 点击 键盘获得的值
   onClickBoard(board: any): void {
     // 点击的是数字
     if(board.title.match(/^[0-9]{1}$/g)){
-      this.keyBoard.passWord.push(board.title); 
+      if(this.keyBoard.passWord.length >= 8){
+          this.showTip('密码不能超过8位 ~','bounceIn');
+          return;
+      } 
+      this.keyBoard.passWord.push(board.title);
     }else{
       if(this.keyBoard.passWord.join('') == '1234'){
         this.leaveMotion();
       }else{
-        this.showTip('密码不对'+Math.random());
+        this.showTip('亲，密码不对哟~','jackInTheBox');
       }
     }
     // 点击的是确定
     this.keyBoard.enterPassword = true;
-
   }
 
   // 点击删除 输入的值
@@ -112,8 +121,13 @@ export class LockPageComponent implements OnInit {
     }
   }  
 
-  //离开动画
-  leaveMotion() : void{
+  // 点击返回主页面
+  onClickBack() : void {
+    kb.backMotion($,'.leave-enter-motion');
+  }
 
+  //离开去其他页面的动画
+  leaveMotion() : void{
+    kb.successMotion($,'.leave-enter-motion');
   }
 }

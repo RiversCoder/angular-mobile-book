@@ -2,24 +2,26 @@
 <div class="lock-page">
     
     <!-- 背景层 -->
-    <section class="lp-background">
-        background
-    </section>
+    <section class="lp-background"></section>
 
     <!-- 展示层 -->
     <section class="lp-show">
         <section class="lp-hg">
             <h3>
-                <time class="lp-duration">{{lock.time}}</time>
+                <time class="lp-duration">20:56</time>
             </h3>
             <h4>
-                <span class="lp-detail-time">5年12月2个星期</span>
+                <span class="lp-detail-time">2018年11月21日 星期六 </span>
             </h4>
+            <div class="icon-group">
+                <span class="icon-info icon-message">99</span>
+                <span class="icon-info icon-speech">23</span>
+            </div>
         </section>
     </section>
 
     <!-- 交互层 -->
-    <section class="lp-interaction">
+    <section class="lp-interaction" *ngIf="false">
         
         <!-- 交互半透明背景层 -->
         <div class="lpi-bg"></div>
@@ -28,12 +30,13 @@
         <div class="lpi-keyboard">
 
             <!-- 显示信息层 -->
-            <div class="info-board">
-                <span class="ib-text" [ngClass]="{'animated tada': keyBoard.openTip }">{{keyBoard.tips}}</span>
+            <!--  *ngIf="keyBoard.openTip" [ngClass]="{'animated jackInTheBox': keyBoard.openTip }" -->
+            <div class="info-board leave-enter-motion">
+                <span class="ib-text animated" *ngIf="keyBoard.openTip" [ngClass]="[keyBoard.tipAnimationName]">{{keyBoard.tips}}</span>
             </div>
 
             <!-- 密码显示框 -->
-            <div class="pwd-board">
+            <div class="pwd-board leave-enter-motion">
                 <span class="pwd-input">
                     <i class="pwd-input-text animated" [ngClass]="{'bounceIn': (i==keyBoard.passWord.length-1) && keyBoard.enterPassword }" *ngFor="let pwd of keyBoard.passWord; index as i;"></i>
                 </span>
@@ -46,16 +49,16 @@
             <div class="num-board">
                 
                 <ul class="num-board-wrap">
-                    <li class="nbw-item" *ngFor="let board of keyBoard.boards" (click)="onClickBoard(board)">
+                    <li class="nbw-item leave-enter-motion" *ngFor="let board of keyBoard.boards" (click)="onClickBoard(board)">
                         <span class="circle-mask" *ngIf="board.active"></span>
                         <span>{{board.title}}</span>
                         <em>{{board.detail}}</em>
                     </li>
                 </ul>
                 
-                <section class="num-board-footer">
-                    <span class="back-command">
-                         <span class="circle-mask"></span>
+                <section class="num-board-footer leave-enter-motion">
+                    <span class="back-command" (click)="onClickBack()">
+                         <span class="circle-mask" ></span>
                     </span>
                 </section>
 

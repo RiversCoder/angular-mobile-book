@@ -56,7 +56,7 @@ class Tool{
         // 格式化两个时间点的时间段
         function formatStamp(stamp1? :number, stamp2? : number): number{
             let disStamp: number = stamp2 - stamp1;
-            let day: number = Math.ceil(disStamp/1000/60/60/24);
+            let day: number = Math.ceil(disStamp/1000/60); // /60/24
             return day;
         }
 

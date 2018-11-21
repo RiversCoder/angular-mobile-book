@@ -1,5 +1,5 @@
 *{margin: 0;padding: 0;}
 html{ width: 100%;height: 100%; }
-body{ width: 100%;height: 100%; }
+body{ width: 100%;height: 100%; font-family:"MicrosoftYaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu; }
 ul,li{ list-style: none !important; }
 #app{ width: 100%;height:100%; position: relative;}

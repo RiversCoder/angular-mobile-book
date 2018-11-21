@@ -28,12 +28,38 @@
         @include wh(100%, 100%); @include bgImg('./images/lock_bg.jpg');@include ab(0,0);
     }
     .lp-show{
-        @include ab(0,0); @include wh(100%, 100%);
+        @include ab(0,0); @include wh(100%, 100%); position: relative;
 
         /* 时间展示信息 */
         .lp-hg{
-            @include wh(70%,150px); @include bgColor(red); margin: 0 auto;margin-top: 150px;
+            @include wh(70%,auto);margin: 0 auto;margin-top: 150px;text-align: left; position: absolute; left: calcs(50);bottom: calcs(150);
+            h3,h4{
+                font-weight: 500;
+            }
+            .lp-duration{ font-size: calcs(100); font-weight: 200; }
+            .lp-detail-time{ font-size: calcs(25); }
+            .icon-group{
+                .icon-info{
+                    font-size: calcs(23);padding-left: calcs(50);margin-left:calcs(20);position: relative;
+                    &:first-of-type{ margin-left:0; }
+                    &:before{
+                        content:'';display: block;@include whRem(36,28);@include bgImg('./images/message.png');position: absolute;left:0;top:calcs(3);
+                    }
+                }
+                .icon-message{
+                    &:before{
+                        @include bgImg('./images/message_icon.png');@include whRem(32,28);
+                    }
+                }
+                .icon-speech{
+                    &:before{
+                        @include bgImg('./images/voice.png');@include whRem(36,33);top:calcs(0);
+                    }
+                }
+            }
         }
+
+
         
     }
      /* 按键操作层 */
@@ -47,7 +73,10 @@
         .lpi-keyboard{
             @include whRem(750,892); position:fixed;left:0;bottom:0;@include pad(0,16);box-sizing: border-box;
             .info-board{
-                @include whRem(718,92);text-align: center;font-size: calcs(20);color:white;letter-spacing: calcs(5);line-height: calcs(92);
+                @include whRem(718,92);text-align: center;color:white;letter-spacing: calcs(5);line-height: calcs(92);
+                .ib-text{
+                    font-size: calcs(25);display:block;animation-duration:0.8s;
+                }
             }
             .pwd-board{
                 @include whRem(718,106);border-bottom: 2px solid rgba(255,255,255,0.2);padding: 0 calcs(10);box-sizing:border-box;position: relative;
