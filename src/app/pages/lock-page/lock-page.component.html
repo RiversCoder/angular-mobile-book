@@ -8,14 +8,14 @@
     <section class="lp-show">
         <section class="lp-hg">
             <h3>
-                <time class="lp-duration">20:56</time>
+                <time class="lp-duration">{{lock.hour}}<em class="lp-point animated">:</em>{{lock.minute}}</time>
             </h3>
             <h4>
-                <span class="lp-detail-time">2018年11月21日 星期六 </span>
+                <span class="lp-detail-time">{{lock.datetime.year}}/{{lock.datetime.month}}/{{lock.datetime.day}} . {{lock.datetime.week}} </span>
             </h4>
             <div class="icon-group">
                 <span class="icon-info icon-message">99</span>
-                <span class="icon-info icon-speech">23</span>
+                <span class="icon-info icon-speech">36</span>
             </div>
         </section>
     </section>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Lock , KeyBoard, kb } from './lock'
+import { Lock , KeyBoard, kb, lk } from './lock'
 import { tool } from 'scripts/tool';
 import * as $ from 'jquery';
 
@@ -14,8 +14,10 @@ export class LockPageComponent implements OnInit {
 
   //初始化时间逻辑
   lock: Lock = {
-      title: '锁屏界面',
-      time: '12:56'
+    time: '12:00',
+    hour: '',
+    minute: '',
+    datetime: null
   };
 
   // 初始化键盘逻辑
@@ -34,47 +36,37 @@ export class LockPageComponent implements OnInit {
   ngOnInit() {
       this.initDate();
       this.initKeyBoards();
+      this.initEvents();
   }
   
+
+  // 初始化事件操作
+  initEvents() : void {
+     lk.initCross($,'.lp-show');
+  }
+
+
   //初始化时间日期
   initDate() : void {
-     this.lock.time = tool.getAllDaysFromTo()+' Day';
+     
+     let self : any = this;
+
+     let gt: () => void = function(): void {
+       self.lock.time = tool.getTime();
+       self.lock.hour = self.lock.time.split(':')[0].toString();
+       self.lock.minute = self.lock.time.split(':')[1].toString();
+     }
+     
+     gt();
+
+     this.lock.datetime = tool.getFullDate();
+     // 定时请求刷新时间
+     let t: number = window.setInterval(gt,1000*30);
   }
 
   // 初始化键盘数字 显示
   initKeyBoards() : void {
-    
-    let num: string = '123456789';
-    let str: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let arr: Array<any> = [];
-
-    let format: any = {
-      title: '',
-      detail: ''
-    };
-
-    arr.push({
-      title: '1',
-      detail: '',
-      active: true
-    });
-
-    for(var i=1;i<num.length;i++){
-      arr.push({
-        title: num[i],
-        detail: str.substr((i-1)*3,3),
-        active: true
-      });
-    }
-
-    // 最后一行操作
-    let lastLine: Array<any> = [
-      { title: '', detail: '', active: false },
-      { title: '0', detail: 'zy', active: true },
-      { title: '√', detail: '', active: true }
-    ];
-    arr.push(...lastLine);
-    this.keyBoard.boards = arr;
+    this.keyBoard.boards = kb.initKeyBoard();
   }
 
   // 显示提示

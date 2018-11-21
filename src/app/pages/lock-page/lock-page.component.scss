@@ -36,11 +36,13 @@
             h3,h4{
                 font-weight: 500;
             }
+            h4{ line-height: calcs(30); }
             .lp-duration{ font-size: calcs(100); font-weight: 200; }
+            .lp-point{ font-style: normal;position: relative;top: calcs(-10); animation-iteration-count: infinite;animation-duration: 2s; }
             .lp-detail-time{ font-size: calcs(25); }
             .icon-group{
                 .icon-info{
-                    font-size: calcs(23);padding-left: calcs(50);margin-left:calcs(20);position: relative;
+                    font-size: calcs(23);padding-left: calcs(50);margin-left:calcs(20);position: relative;font-weight:300;
                     &:first-of-type{ margin-left:0; }
                     &:before{
                         content:'';display: block;@include whRem(36,28);@include bgImg('./images/message.png');position: absolute;left:0;top:calcs(3);
@@ -48,7 +50,7 @@
                 }
                 .icon-message{
                     &:before{
-                        @include bgImg('./images/message_icon.png');@include whRem(32,28);
+                        @include bgImg('./images/message_2.png');@include whRem(32,28);
                     }
                 }
                 .icon-speech{
@@ -57,10 +59,7 @@
                     }
                 }
             }
-        }
-
-
-        
+        }  
     }
      /* 按键操作层 */
     .lp-interaction{

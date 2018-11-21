@@ -63,7 +63,22 @@ class Tool{
        
         return formatStamp(analysisDate(oldDay),currentDayStamp);
     }
+
+
+    //  获取年月日星期 2018年11月21日 星期六
+    getFullDate(): any {
+        
+        let weeks: string[] = ['Sun','Mon','Tues','Wed','Thur','Fri','Sat'];
+
+        let date: Date = new Date();
+        let year: number = date.getFullYear();
+        let month: number = date.getMonth()+1;
+        let day: number = date.getDate();
+        let week: string = weeks[date.getDay()];
+
+        return {year,month,day,week};
+    }
 }
 
 // 实例化Tool类
-export const tool = new Tool();
+export const tool: Tool = new Tool();
