@@ -2,7 +2,7 @@ import { tool } from 'scripts/tool';
 
 // 定义jquery引入的接口参数规范
 interface JqueryFunc {
-    ($?: any, classSelector?: string): void;
+    ($?: any, classSelector?: string, callback?: any): void;
 }
 
 
@@ -22,8 +22,60 @@ export class Lock {
         
     }
 
-    initCross?: JqueryFunc = function($?: any, classSelector?: string) : void {
+    // 滑屏事件监控
+    initCross?: JqueryFunc = function($?: any, classSelector?: string, callback?: any ) : any {
+
+        let x1 : number;
+        let y1 : number;
+        let x2 : number;
+        let y2 : number;
+        let dis : number;
+
+        $(classSelector).on('touchstart',function(e){
+            let c = e.touches[0];
+            x1 = c.clientX;
+            y1 = c.clientY;
+        });
+
+        $(classSelector).on('touchend',function(e){
+
+            let c = e.changedTouches[0];
+            x2 = c.clientX;
+            y2 = c.clientY;
+            dis = Math.sqrt(Math.pow(Math.abs(x1-x2),2) + Math.pow(Math.abs(y1-y2),2));
         
+            if(y2 <= y1 ){
+                callback({dis,direct:1});
+            } 
+            else{
+                callback({dis,direct:-1});
+            }
+                
+        });
+    }
+
+    // 消失动画
+    outMotion?: JqueryFunc = function ( $?: any, callback?: any ) : void {
+
+        // 隐藏时间控件动画
+        let len = $('.date-motion-box').length;
+        $('.lp-hg').removeClass('animated fadInUp').addClass('animated fadeOutDown');
+        $('.date-motion-box').each(function(index,el){
+            if(index !== 0){
+                $(this).css('animation-delay',(len-index)*0.03+'s');
+                $(this).removeClass('animated fadInUp').addClass('animated fadeOutUp');
+            }else{
+                $(this).removeClass('animated fadInUp').addClass('animated fadeOut');
+            }
+        });
+
+        // 动画完成后回调
+        let t : number = window.setTimeout(()=>{
+            // 关闭时间展示层
+            $('.lp-show').removeClass('lp-display-show').addClass('lp-display-none');
+            callback();
+            window.clearTimeout(t);
+        },1000);
     }
 
 }
@@ -38,6 +90,7 @@ export class KeyBoard {
     passWord: Array<string>; //初始化输入的密码
     enterPassword: boolean; //输入密码删除密码的状态
     tipAnimationName: string; // 提示文字动画
+
 
 
     // 初始化数字键盘
@@ -73,9 +126,24 @@ export class KeyBoard {
 
     //入场动画
     intoMotion?: JqueryFunc = function($?: any, classSelector?: string) : void {
-        if(true){
-            console.log('123');
-        }
+
+        let timer: number;
+
+        tool.toggleLayer('.lp-interaction','.lp-show');
+        $('.lp-interaction').addClass('animated fadeIn');
+        $('.leave-enter-motion').each(function(index, Element){
+           $(this).css('animation-duration','.5s');
+           $(this).css('animation-delay',index*0.01+'s');
+           $(this).addClass('animated fadeInUpBig');
+        });
+
+        // 清除运动 animation class
+        timer = window.setTimeout(() => {
+           $('.lp-interaction').removeClass('animated fadeIn');
+           $('.leave-enter-motion').removeAttr('style').removeClass('animated fadeInUpBig');
+           window.clearTimeout(timer);
+        },1500); 
+
     }
 
     //返回动画
@@ -84,13 +152,23 @@ export class KeyBoard {
         //1. 聊天离开动画
         let len : number = $(classSelector).length;
         $(classSelector).each(function(index, Element){
+          $(this).css('animation-duration','.5s');
           $(this).css('animation-delay',(len-index)*0.01+'s');
-          $(this).removeClass('animated fadeOutUpBig').addClass('animated fadeOutDownBig');
+          $(this).addClass('animated fadeOutDownBig');
         });
 
-        // 2. 动画隐藏键盘界面
+        // 2. 清除运动 animation class
         let t : number = window.setTimeout(() => {
-          $('.lp-interaction').removeClass('animated fadeOut').addClass('animated fadeOut');
+          $('.lp-interaction').addClass('animated fadeOut');
+          let t2 = setTimeout(() => {
+            $('.lp-interaction').removeClass('animated fadeOut');
+            $(classSelector).removeAttr('style').removeClass('animated fadeOutDownBig');
+            tool.toggleLayer('.lp-show','.lp-interaction');
+            // 时间控件进入
+
+            
+            
+          },300);
         }, 10*len ); 
 
     }

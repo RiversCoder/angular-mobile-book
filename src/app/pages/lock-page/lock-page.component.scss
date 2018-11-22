@@ -23,6 +23,8 @@
 /* 锁屏页面 */
 .lock-page{ 
     @include wh(100%, 100%); background-color: #333;color: #fff; position: fixed;top: 0;left: 0;bottom: 0;right: 0;
+    .lp-display-show{ display: block; }
+    .lp-display-none{ display: none; }
     /* 背景 */
     .lp-background{
         @include wh(100%, 100%); @include bgImg('./images/lock_bg.jpg');@include ab(0,0);
@@ -63,7 +65,7 @@
     }
      /* 按键操作层 */
     .lp-interaction{
-        @include ab(0,0); @include wh(100%, 100%);
+        @include ab(0,0); @include wh(100%, 100%);display: none;
         .lpi-bg{
              @include wh(100%, 100%); @include bgColor(rgba(0,0,0,0.8));@include ab(0,0);
         }

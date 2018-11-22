@@ -42,7 +42,18 @@ export class LockPageComponent implements OnInit {
 
   // 初始化事件操作
   initEvents() : void {
-     lk.initCross($,'.lp-show');
+     lk.initCross($,'.lp-show',(data) => {
+      if(data.direct == 1 && data.dis > 300){
+        
+        // 时间控件离场
+        lk.outMotion($,() => {
+          // 数字键盘入场
+          kb.intoMotion($);      
+          
+        });
+      }
+
+     })
   }
 
 
@@ -122,4 +133,6 @@ export class LockPageComponent implements OnInit {
   leaveMotion() : void{
     kb.successMotion($,'.leave-enter-motion');
   }
+
+  
 }

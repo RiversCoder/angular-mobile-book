@@ -78,6 +78,16 @@ class Tool{
 
         return {year,month,day,week};
     }
+
+
+    // 切换显示对应的Layer
+    toggleLayer(showPanelClassName,hidePanelClassName): void{
+        let elShow = document.querySelector(showPanelClassName);
+        let elHide = document.querySelector(hidePanelClassName);
+
+        elShow.style.display = 'block';
+        elHide.style.display = 'none';
+    }
 }
 
 // 实例化Tool类

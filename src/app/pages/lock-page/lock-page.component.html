@@ -7,13 +7,13 @@
     <!-- 展示层 -->
     <section class="lp-show">
         <section class="lp-hg">
-            <h3>
+            <h3 class="date-motion-box ">
                 <time class="lp-duration">{{lock.hour}}<em class="lp-point animated">:</em>{{lock.minute}}</time>
             </h3>
-            <h4>
+            <h4 class="date-motion-box">
                 <span class="lp-detail-time">{{lock.datetime.year}}/{{lock.datetime.month}}/{{lock.datetime.day}} . {{lock.datetime.week}} </span>
             </h4>
-            <div class="icon-group">
+            <div class="icon-group date-motion-box">
                 <span class="icon-info icon-message">99</span>
                 <span class="icon-info icon-speech">36</span>
             </div>
@@ -21,7 +21,7 @@
     </section>
 
     <!-- 交互层 -->
-    <section class="lp-interaction" *ngIf="false">
+    <section class="lp-interaction">
         
         <!-- 交互半透明背景层 -->
         <div class="lpi-bg"></div>
