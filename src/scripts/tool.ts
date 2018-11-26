@@ -80,7 +80,7 @@ class Tool{
     }
 
 
-    // 切换显示对应的Layer
+    // 切换显示对应的Layer On/Off
     toggleLayer(showPanelClassName,hidePanelClassName): void{
         let elShow = document.querySelector(showPanelClassName);
         let elHide = document.querySelector(hidePanelClassName);

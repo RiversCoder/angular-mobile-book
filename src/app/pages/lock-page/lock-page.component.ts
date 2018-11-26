@@ -42,14 +42,13 @@ export class LockPageComponent implements OnInit {
 
   // 初始化事件操作
   initEvents() : void {
-     lk.initCross($,'.lp-show',(data) => {
+     lk.initCross($,'.lp-show',function(data: any): void {
       if(data.direct == 1 && data.dis > 300){
         
         // 时间控件离场
-        lk.outMotion($,() => {
+        lk.outMotion($, '', function(): void {
           // 数字键盘入场
-          kb.intoMotion($);      
-          
+          kb.intoMotion($);
         });
       }
 
@@ -126,7 +125,21 @@ export class LockPageComponent implements OnInit {
 
   // 点击返回主页面
   onClickBack() : void {
-    kb.backMotion($,'.leave-enter-motion');
+
+    if(!kb.motionStatus){
+      return;
+    }
+
+    kb.backMotion($,'.leave-enter-motion',function(): void{
+
+      
+      
+      // 初始化时间入场动画
+      lk.initMotion($,'',function(): void{
+
+      });
+
+    });
   }
 
   //离开去其他页面的动画

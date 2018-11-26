@@ -6,6 +6,8 @@ interface JqueryFunc {
 }
 
 
+
+
 // 时间相关 属性方法
 export class Lock {
     
@@ -16,6 +18,7 @@ export class Lock {
     weather?: string;
     hour?: string;
     minute?: string;
+    motionStatus?: false; // 运动切换开关状态
 
 
     constructor(){
@@ -44,7 +47,7 @@ export class Lock {
             y2 = c.clientY;
             dis = Math.sqrt(Math.pow(Math.abs(x1-x2),2) + Math.pow(Math.abs(y1-y2),2));
         
-            if(y2 <= y1 ){
+            if( y2 <= y1 ){
                 callback({dis,direct:1});
             } 
             else{
@@ -55,24 +58,60 @@ export class Lock {
     }
 
     // 消失动画
-    outMotion?: JqueryFunc = function ( $?: any, callback?: any ) : void {
+    outMotion?: JqueryFunc = function ( $?: any, classSelector?: string, callback?: any ) : void {
 
         // 隐藏时间控件动画
         let len = $('.date-motion-box').length;
-        $('.lp-hg').removeClass('animated fadInUp').addClass('animated fadeOutDown');
+        $('.lp-hg').addClass('animated fadeOutDown');
+        $('.date-motion-box').removeClass('animated fadOutUp').removeClass('animated fadeOut');
         $('.date-motion-box').each(function(index,el){
             if(index !== 0){
                 $(this).css('animation-delay',(len-index)*0.03+'s');
-                $(this).removeClass('animated fadInUp').addClass('animated fadeOutUp');
+                $(this).addClass('animated fadeOutDown');
             }else{
-                $(this).removeClass('animated fadInUp').addClass('animated fadeOut');
+                $(this).addClass('animated fadeOut');
+            }
+        });
+        this.motionStatus = false;
+        // 动画完成后回调
+        let t : number = window.setTimeout(()=>{
+            // 关闭时间展示层
+            
+            //清除时间动画class
+            $('.date-motion-box').removeAttr('style').removeClass('animated fadeOut').removeClass('animated fadeOutDown');
+            $('.lp-hg').removeClass('animated fadeOutDown');
+            this.motionStatus = true;
+            callback();
+            window.clearTimeout(t);
+        },1000);
+    }
+
+    // 初始化入场动画
+    initMotion?: JqueryFunc = function ( $?: any, classSelector?: string, callback?: any ) : void {
+        
+        // 隐藏时间控件动画
+        let len = $('.date-motion-box').length;
+        $('.lp-hg').addClass('animated fadeInUp');
+        $('.lp-show').css('display','block').addClass('animated fadeIn');
+        // $('.date-motion-box').removeClass('animated fadInUp').removeClass('animated fadeIn');
+        $('.date-motion-box').each(function(index,el){
+            if(index !== 0){
+                $(this).css('animation-delay',(len-index)*0.03+'s');
+                $(this).addClass('animated fadeInUp');
+            }else{
+                $(this).addClass('animated fadeIn');
             }
         });
 
         // 动画完成后回调
         let t : number = window.setTimeout(()=>{
             // 关闭时间展示层
-            $('.lp-show').removeClass('lp-display-show').addClass('lp-display-none');
+            $('.lp-show').removeAttr('style').removeClass('animated fadeIn lp-display-none').addClass('lp-display-show');
+
+            //清除时间动画class
+            $('.date-motion-box').removeAttr('style').removeClass('animated fadeOut fadeIn').removeClass('animated fadeInUp');
+            $('.lp-hg').removeClass('animated fadeInUp ');
+
             callback();
             window.clearTimeout(t);
         },1000);
@@ -90,7 +129,7 @@ export class KeyBoard {
     passWord: Array<string>; //初始化输入的密码
     enterPassword: boolean; //输入密码删除密码的状态
     tipAnimationName: string; // 提示文字动画
-
+    motionStatus?: false; // 运动切换开关状态
 
 
     // 初始化数字键盘
@@ -128,7 +167,6 @@ export class KeyBoard {
     intoMotion?: JqueryFunc = function($?: any, classSelector?: string) : void {
 
         let timer: number;
-
         tool.toggleLayer('.lp-interaction','.lp-show');
         $('.lp-interaction').addClass('animated fadeIn');
         $('.leave-enter-motion').each(function(index, Element){
@@ -136,40 +174,41 @@ export class KeyBoard {
            $(this).css('animation-delay',index*0.01+'s');
            $(this).addClass('animated fadeInUpBig');
         });
-
+        this.motionStatus = false;
         // 清除运动 animation class
         timer = window.setTimeout(() => {
            $('.lp-interaction').removeClass('animated fadeIn');
-           $('.leave-enter-motion').removeAttr('style').removeClass('animated fadeInUpBig');
+           $('.leave-enter-motion').removeAttr('style').removeClass('animated fadeInUpBig').removeClass('animated fadeOutDownBig');
            window.clearTimeout(timer);
+           this.motionStatus = true;
         },1500); 
 
     }
 
     //返回动画
-    backMotion?: JqueryFunc = function($?: any, classSelector?: string) : void {
+    backMotion?: JqueryFunc = function($?: any, classSelector?: string, callback?: any) : void {
 
-        //1. 聊天离开动画
         let len : number = $(classSelector).length;
+        $('.lp-interaction').addClass('animated fadeOut');
         $(classSelector).each(function(index, Element){
           $(this).css('animation-duration','.5s');
           $(this).css('animation-delay',(len-index)*0.01+'s');
           $(this).addClass('animated fadeOutDownBig');
         });
 
+        this.motionStatus = false;
+
         // 2. 清除运动 animation class
         let t : number = window.setTimeout(() => {
-          $('.lp-interaction').addClass('animated fadeOut');
-          let t2 = setTimeout(() => {
-            $('.lp-interaction').removeClass('animated fadeOut');
-            $(classSelector).removeAttr('style').removeClass('animated fadeOutDownBig');
-            tool.toggleLayer('.lp-show','.lp-interaction');
-            // 时间控件进入
 
+           this.motionStatus = true;
+           $(classSelector).removeAttr('style').removeClass('animated fadeOutDownBig');
+           $('.lp-interaction').removeClass('animated fadeOut').css('display','none');
+           /*$('.back-command').html('').append('<span class="circle-mask"></span>');*/
+           window.clearTimeout(t);
+           callback();
             
-            
-          },300);
-        }, 10*len ); 
+        }, 1000 ); 
 
     }
 
