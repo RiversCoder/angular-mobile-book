@@ -1,0 +1,8 @@
+/* 引入公共属性方法 */
+@import "src/libs/basic.scss";
+@import "src/libs/mixin.scss";
+
+
+.list-page{
+    @include wh(100%,100%);@include bgColor(#333);color:#fff;
+}

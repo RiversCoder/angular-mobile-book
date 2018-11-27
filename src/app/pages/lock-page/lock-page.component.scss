@@ -103,6 +103,7 @@
                             animation: keyBoardMotion ease .8s;
                         }
                     }
+                    
                 }
             }
             .num-board{
@@ -129,6 +130,11 @@
                         &:active{
                             .circle-mask{
                                 animation: keyBoardMotion ease .8s;
+                            }
+                        }
+                        &:visited{
+                            .circle-mask{
+                                @include bgColor(rgba(255,255,255,0)); 
                             }
                         }
                     }

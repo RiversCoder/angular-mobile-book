@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Lock , KeyBoard, kb, lk } from './lock'
 import { tool } from 'scripts/tool';
+import {Router} from '@angular/router';
 import * as $ from 'jquery';
 
 
@@ -32,19 +33,26 @@ export class LockPageComponent implements OnInit {
     tipAnimationName: 'tada'
   };
 
+  constructor( private router: Router ){}
+
   // 生命周期
   ngOnInit() {
       this.initDate();
       this.initKeyBoards();
       this.initEvents();
+      this.initAnimation();
   }
   
+
+  //初始化动画
+  initAnimation(): void {
+    lk.initMotion($,'',function():void{});
+  }
 
   // 初始化事件操作
   initEvents() : void {
      lk.initCross($,'.lp-show',function(data: any): void {
       if(data.direct == 1 && data.dis > 300){
-        
         // 时间控件离场
         lk.outMotion($, '', function(): void {
           // 数字键盘入场
@@ -126,26 +134,34 @@ export class LockPageComponent implements OnInit {
   // 点击返回主页面
   onClickBack() : void {
 
+    let self = this;
     if(!kb.motionStatus){
       return;
     }
 
     kb.backMotion($,'.leave-enter-motion',function(): void{
-
-      
-      
       // 初始化时间入场动画
       lk.initMotion($,'',function(): void{
-
+        // 初始化数据
+        self.keyBoard.tips = '';
+        self.keyBoard.passWord = [];
       });
-
     });
   }
 
   //离开去其他页面的动画
   leaveMotion() : void{
-    kb.successMotion($,'.leave-enter-motion');
+    let self = this;
+    kb.successMotion($,'.leave-enter-motion',function() : void {
+
+      // 退出动画
+      $('.lp-background').addClass('animated fadeIn');
+
+      self.router.navigateByUrl('/list'); 
+    });
   }
+
+
 
   
 }

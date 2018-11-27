@@ -192,7 +192,7 @@ export class KeyBoard {
         $('.lp-interaction').addClass('animated fadeOut');
         $(classSelector).each(function(index, Element){
           $(this).css('animation-duration','.5s');
-          $(this).css('animation-delay',(len-index)*0.01+'s');
+          $(this).css('animation-delay',(len-index)*0.02+'s');
           $(this).addClass('animated fadeOutDownBig');
         });
 
@@ -209,19 +209,29 @@ export class KeyBoard {
            callback();
             
         }, 1000 ); 
-
     }
 
     //登陆成功动画
-    successMotion?: JqueryFunc = function($?: any, classSelector?: string) : void {
+    successMotion?: JqueryFunc = function($?: any, classSelector?: string, callback?: any) : void {
         $(classSelector).each(function(index, Element){
            $(this).css('animation-delay',index*0.01+'s');
-           $(this).removeClass('animated fadeOutDown').addClass('animated fadeOutUp');
+           $(this).addClass('animated fadeOutUp');
         });
+        
         // 2. 动画隐藏键盘界面
-        let t : number = window.setTimeout(() => {
-          $('.lp-interaction').removeClass('animated fadeOut').addClass('animated fadeOut');
+        let t1 : number = window.setTimeout(() => {
+          $('.lp-interaction').addClass('animated fadeOut');
+          window.clearTimeout(t1);
         }, 100 ); 
+
+        // 3. 动画
+        let t2 : number =window.setTimeout(() => {
+          $('.lp-interaction').removeClass('animated fadeOut').css('display','none');
+          $(classSelector).removeClass('animated fadeOutUp');
+          callback();
+          window.clearTimeout(t2);
+        }, 1100 ); 
+
     }
 
     
