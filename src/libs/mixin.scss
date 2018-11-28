@@ -30,6 +30,13 @@
     top: $top;
 }
 
+// 绝对底部定位 
+@mixin abb(){
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
 // rem 绝对定位
 @mixin abRem($left, $top){
     position: absolute;
@@ -46,6 +53,7 @@
 @mixin bgImg($url){
     background-image: url($url);
     background-position: 0 0;
-    background-size: 100% 100%;    
+    background-size: 100% 100%;
+    background-repeat:no-repeat;    
 }
 

@@ -1,0 +1,28 @@
+/* 引入公共属性方法 */
+@import "src/libs/basic.scss";
+@import "src/libs/mixin.scss";
+
+.list-box-container{
+    @include whRem(600,810);position: relative;border-radius: calcs(25);overflow: hidden;
+    .lbc-head{
+        width: 100%;height: calcs(510);@include bgColor(#ddd);position: relative;
+        .lbc-bg{
+            @include ab(0,0);@include wh(100%,100%);@include bgImg('./images/bg-item.jpg');background-size:cover;filter:blur(0px);
+        }
+        .lbc-time{
+            font-size: calcs(25);@include abb();width:100%;height:calcs(150);line-height:calcs(250);text-align: right;box-sizing:border-box;padding-right: calcs(20);background:-webkit-linear-gradient(bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.2),rgba(0,0,0,0));
+        }
+    }
+    .lbc-content{
+        width: 100%;height: calcs(300);@include bgColor(#fdfdfd);position: relative;
+        .lbc-ctitle{
+            width:100%;height:calcs(110);font-size: calcs(25);text-align: center;line-height: calcs(110);color:#514f54;
+        }
+        .lbc-ctxt{
+            width:100%;height:calcs(190);font-size:calcs(22);color:#b8aaa1;box-sizing:border-box;padding: 0 calcs(30);line-height: calcs(40);overflow: hidden;
+        }
+        .lbc-cmask{
+            width:100%;height:calcs(190);@include abb();background:-webkit-linear-gradient(bottom,rgba(255,255,255,0.9) 20% ,rgba(255,255,255,0.6) 50%,rgba(255,255,255,0) 100%);
+        }
+    }
+}

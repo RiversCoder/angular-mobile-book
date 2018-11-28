@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { LockPageComponent } from './pages/lock-page/lock-page.component';
 import { AppRoutingModule } from './routes/app-routing.module';
 import { ListPageComponent } from './pages/list-page/list-page.component';
+import { ListBoxComponent } from './components/list-box/list-box.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LockPageComponent,
-    ListPageComponent
+    ListPageComponent,
+    ListBoxComponent
   ],
   imports: [
     BrowserModule,
