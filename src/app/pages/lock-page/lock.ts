@@ -6,8 +6,6 @@ interface JqueryFunc {
 }
 
 
-
-
 // 时间相关 属性方法
 export class Lock {
     

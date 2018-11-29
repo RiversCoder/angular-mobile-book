@@ -4,7 +4,7 @@
 
 
 .list-page{
-    @include wh(100%,100%);@include bgColor(#333);color:#fff;position: relative;
+    @include wh(100%,100%);color:#fff;position: relative;
     .page-top-place{
         width:100%;height:calcs(100);@include bgColor(#4d5bdb);position: fixed;top:0;left:0;
     }
@@ -12,6 +12,9 @@
         width:100%;height:calcs(105);@include bgColor(#4d5bdb);position: fixed;bottom:0;left:0;
     }
     .list-container{
-        width:100%;position: absolute;top:calcs(100);bottom:calcs(105);
+        width:100%;position: absolute;top:calcs(100);bottom:calcs(105);overflow: hidden;
+        .list-motion-box{
+            width:100%;height:calcs(910);position: absolute;@include bgColor(red);bottom:0;
+        }
     }
 }

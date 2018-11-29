@@ -1,5 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
+
+
+interface Item {
+  id?: number;
+  img?: string;
+  title?: string;
+  content?: string;
+  date?: string;
+}
+
 
 @Component({
   selector: 'app-list-box',
@@ -8,20 +18,28 @@ import * as $ from 'jquery';
 })
 export class ListBoxComponent implements OnInit {
 
+  @Input() box: Item;
+  @Input('activeStatus') active: number;
+
+  item: Item;
+
   constructor() { }
 
   ngOnInit() {
-
+    //this.getListArr(0);
   }
+
+
+  
 
   // 点击触发卡片变大
   changeBigCard(event: any): void{
-      //1. 盒子变大
-      
+      //1. 盒子变大 w 690 h 910
   }
 
   calcs(num: number): string {
       return Math.round(num/50)+'rem';
   }
 
+  
 }

@@ -1,11 +1,11 @@
-<section class="list-box-container">
+<section class="list-box-container" data-id="{{box.id}}" [ngClass]="{ 'list-box-container-active' : active }">
     <div class="lbc-head" (click) = "changeBigCard($event)">
-        <span class="lbc-bg"></span>
-        <time class="lbc-time">2018/11/28</time>
+        <span class="lbc-bg" [ngStyle]="{'background-image': 'url('+box.img+')'}"></span>
+        <time class="lbc-time">{{box.date}}</time>
     </div>
     <div class="lbc-content">
-        <h4 class="lbc-ctitle">第二十二封信笺</h4>
-        <p class="lbc-ctxt" data-length='88'>热情这东西其实也很脆弱，耗完了耐心，攒够了失望，剩余的就只有疲惫和冷漠了。最好的妆容是微笑，最好的饰品是谦虚，最好的衣裳是自信。 ​​​​在一切变好之前，我们总要经历一些不开心的日子，这段日子也许很长，也许只是一觉醒来。</p>
+        <h4 class="lbc-ctitle">{{box.title}}</h4>
+        <p class="lbc-ctxt" data-length='88'>{{box.content}}</p>
         <span class="lbc-cmask"></span>
     </div>
 </section>

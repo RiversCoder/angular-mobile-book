@@ -2,8 +2,10 @@
 @import "src/libs/basic.scss";
 @import "src/libs/mixin.scss";
 
+
+
 .list-box-container{
-    @include whRem(600,810);position: relative;border-radius: calcs(25);overflow: hidden;
+    @include whRem(600,810);position: relative;border-radius: calcs(25);overflow: hidden;transform: scale(0.9);opacity: 0.9;
     .lbc-head{
         width: 100%;height: calcs(510);@include bgColor(#ddd);position: relative;
         .lbc-bg{
@@ -25,4 +27,8 @@
             width:100%;height:calcs(190);@include abb();background:-webkit-linear-gradient(bottom,rgba(255,255,255,0.9) 20% ,rgba(255,255,255,0.6) 50%,rgba(255,255,255,0) 100%);
         }
     }
+}
+
+.list-box-container-active{
+    transform: scale(1);opacity: 1;
 }
