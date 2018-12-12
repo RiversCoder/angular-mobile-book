@@ -7,6 +7,7 @@ import { LockPageComponent } from './pages/lock-page/lock-page.component';
 import { AppRoutingModule } from './routes/app-routing.module';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { ListBoxComponent } from './components/list-box/list-box.component';
+import { ListDetailComponent } from './components/list-detail/list-detail.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ListBoxComponent } from './components/list-box/list-box.component';
     AppComponent,
     LockPageComponent,
     ListPageComponent,
-    ListBoxComponent
+    ListBoxComponent,
+    ListDetailComponent
   ],
   imports: [
     BrowserModule,
