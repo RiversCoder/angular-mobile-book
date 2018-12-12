@@ -61,10 +61,10 @@ export class ListPageComponent implements OnInit {
     let touchOnoff: boolean = true;
 
     $('.list-motion-box').on('touchstart',function(e){
-     
       if(!touchOnoff){
         return;
       }
+
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
       disX = 0;
@@ -91,8 +91,14 @@ export class ListPageComponent implements OnInit {
       });
 
     });
+
+
     $('.list-motion-box').on('touchend',function(e){
-      
+
+      if(!touchOnoff){
+        return;
+      }
+
       //如果没有越界
       if(!tool.checkDisCross(disX,disY,120)){
         // 恢复之前状态
@@ -102,14 +108,14 @@ export class ListPageComponent implements OnInit {
           'filter': 'blur(0)'
         });
         return;
+      }else{
+        touchOnoff = false;
       }
 
-      touchOnoff = false;
-
       // 整体位置移动 且修改cindex的值
-      let basicWidth : number = parseInt($('.list-box-container').css('width'));
-      let basicRem: number = tool.calcRemValue(basicWidth);
-      let direc = 1;
+      let basicWidth : number = 600;
+      let basicRem: number = tool.calcRemValue(600);
+      let direc: number = 1;
 
       if(disX <= 0 ){
         direc = -1;
@@ -120,7 +126,7 @@ export class ListPageComponent implements OnInit {
        $('.list-box-container').each(function(index,item){
           $(item).removeClass('list-box-container-active');
           $(item).css({
-            'transition': '.8s ease',
+            'transition': '.6s ease',
             'transform': `translate3d(${direc*basicRem}rem,0,0) scale(0.88)`
           });
       });
@@ -134,7 +140,8 @@ export class ListPageComponent implements OnInit {
         self.clist = self.clist - direc;
         self.needLists = self.getListArr(self.clist);
         window.clearTimeout(timer);
-      },800);
+      },600);
+
 
     });
 
