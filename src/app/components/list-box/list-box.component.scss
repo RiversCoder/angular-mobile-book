@@ -5,7 +5,7 @@
 
 
 .list-box-container{
-    @include whRem(600,810);position: relative;border-radius: calcs(25);overflow: hidden;transform: scale(0.9);opacity: 0.9;
+    @include whRem(600,810);position: relative;z-index:1;border-radius: calcs(25);overflow: hidden;transform: scale(0.88);opacity: 0.9;filter:blur(5px);
     .lbc-head{
         width: 100%;height: calcs(510);@include bgColor(#ddd);position: relative;
         .lbc-bg{
@@ -30,5 +30,5 @@
 }
 
 .list-box-container-active{
-    transform: scale(1);opacity: 1;
+    transform: scale(1);opacity: 1;filter:blur(0px);z-index:2;box-shadow: 0 0 calcs(20) rgba(0,0,0,0.5);
 }

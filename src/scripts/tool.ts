@@ -88,6 +88,41 @@ class Tool{
         elShow.style.display = 'block';
         elHide.style.display = 'none';
     }
+
+
+    //已知 x , y 坐标，求出角度
+    getDegByPostion(x: number,y: number): number{
+        //let tan = Math.tan(x/y);
+        let hudu: number = Math.atan(x/y);
+        let deg: number = hudu/Math.PI*180;
+        
+        return Math.floor(deg);
+    }
+
+    // 获取 x, y 坐标，判断移动的距离是否越界
+    checkDisCross(x: number,y: number,cross: number): boolean{
+        let dis: number = Math.floor(Math.sqrt(Math.pow(x,2)+Math.pow(x,2)));
+        if(dis >= cross){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    // 获取css样式里面的值
+    getStyle(obj: any,attr: string): any{
+        if(obj.currentStyle){      //IE
+            return obj.currentStyle[attr]; 
+        }else{
+            return getComputedStyle(obj,'')[attr];     //Firefox
+        }
+    }
+
+    // 计算rem值
+    calcRemValue(value: number): number{
+        let basic : number = 750/15;
+        return (value/basic);
+    }
 }
 
 // 实例化Tool类

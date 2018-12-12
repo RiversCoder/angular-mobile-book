@@ -14,7 +14,7 @@
     .list-container{
         width:100%;position: absolute;top:calcs(100);bottom:calcs(105);overflow: hidden;
         .list-motion-box{
-            width:100%;height:calcs(910);position: absolute;@include bgColor(red);bottom:0;
+            width:100%;height:calcs(910);position: absolute;@include bgColor(red);bottom:0;width: calcs(3000);display: flex;box-sizing:border-box;padding-top: 100px;overflow: hidden;position: relative;left: calcs(-1125);
         }
     }
 }

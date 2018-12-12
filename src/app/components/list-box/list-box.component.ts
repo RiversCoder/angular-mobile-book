@@ -19,7 +19,7 @@ interface Item {
 export class ListBoxComponent implements OnInit {
 
   @Input() box: Item;
-  @Input('activeStatus') active: number;
+  @Input('activeStatus') active: boolean;
 
   item: Item;
 
@@ -27,19 +27,22 @@ export class ListBoxComponent implements OnInit {
 
   ngOnInit() {
     //this.getListArr(0);
+    this.checkTouch();
   }
 
 
-  
-
   // 点击触发卡片变大
   changeBigCard(event: any): void{
-      //1. 盒子变大 w 690 h 910
+      // 1. 盒子变大 w 690 h 910
   }
 
   calcs(num: number): string {
       return Math.round(num/50)+'rem';
   }
 
+  // 检测滑动操作
+  checkTouch(){
+
+  }    
   
 }
