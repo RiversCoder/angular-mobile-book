@@ -37,6 +37,13 @@
     bottom: 0;
 }
 
+@mixin abz(){
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+
 // rem 绝对定位
 @mixin abRem($left, $top){
     position: absolute;
