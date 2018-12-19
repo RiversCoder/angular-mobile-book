@@ -8,6 +8,7 @@ import { AppRoutingModule } from './routes/app-routing.module';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { ListBoxComponent } from './components/list-box/list-box.component';
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
+import { BetterScrollComponent } from './components/better-scroll/better-scroll.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ListDetailComponent } from './components/list-detail/list-detail.compon
     LockPageComponent,
     ListPageComponent,
     ListBoxComponent,
-    ListDetailComponent
+    ListDetailComponent,
+    BetterScrollComponent
   ],
   imports: [
     BrowserModule,

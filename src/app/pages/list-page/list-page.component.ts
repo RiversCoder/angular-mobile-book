@@ -20,7 +20,7 @@ export class ListPageComponent implements OnInit {
   cindex: number = 2;
   clist: number = 0;
   needLists: Array<any> = this.getListArr(this.clist);
-
+  labels: Array<string> = ['where are you','I want it','I don\' know you.', '今天天气真好!','维护世界和平','保卫家园保卫时间','时光日语如梭','Do you like me.'];
 
   // 获取需要的5个显示项
   getListArr(index: number): any[] {

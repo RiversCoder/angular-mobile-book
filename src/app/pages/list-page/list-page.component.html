@@ -1,16 +1,20 @@
 <section class="list-page">
-    <section class="page-top-place">
-        
-    </section>
+
+
+    <section class="page-top-place"></section>
+
     <section class="list-container">
         <!-- motion box -->
         <div class="list-motion-box">
             <app-list-box *ngFor="let item of needLists; let i = index" [box]="item" [activeStatus]="i == cindex ? true : false"></app-list-box>
         </div>
-        <!-- detail box -->
-        <div class="list-detail-box">
-            <app-list-detail></app-list-detail>
-        </div>
     </section>
+
     <section class="page-bottom-place"></section>
+
+    <!-- detail box -->
+    <div class="list-detail-box">
+        <app-list-detail [detailLabels]="labels"></app-list-detail>
+    </div>
+
 </section>

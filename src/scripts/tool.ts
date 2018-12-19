@@ -123,6 +123,24 @@ class Tool{
         let basic : number = 750/15;
         return (value/basic);
     }
+
+    // 根据下班，循环遍历数组，取出指定数量的值
+    getTargetArrByIndex(arr: Array<any>,cindex: number, len: number): Array<any>{
+
+        let newArr: any[] = [];
+        let dis: number = 0;
+        let index: number = cindex % arr.length;
+
+        if(index <= arr.length - len){
+            newArr = arr.slice(index,index + len);
+        }else if(index > arr.length - len && index < arr.length){
+            dis = len - (arr.length - index);
+            newArr = [...arr.slice(index,arr.length),...arr.slice(0,dis)];            
+        }   
+        
+        return JSON.parse(JSON.stringify(newArr));
+    }
+
 }
 
 // 实例化Tool类
