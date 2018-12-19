@@ -16,6 +16,7 @@ export class ListDetailComponent implements OnInit {
   private headerTitleHeight: number;
   private currentLabels : Array<string> = [];
   private labelIndex: number = 5;
+  private labelClass: any = "";
 
   @ViewChild('scroll') scrollEl: ElementRef;
   @Input('detailLabels') lables: Array<string>;
