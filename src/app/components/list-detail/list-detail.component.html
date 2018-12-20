@@ -18,11 +18,10 @@
         <div class="dh-mask"></div>
         <span class="detail-header-line"></span>
         <span class="detail-header-time">2015年8月12日</span>
-        <div class="detail-header-tags">
-            <span class="dht-tag animated fadeInUp" *ngFor="let item of currentLabels;let i = index;" [ngClass]="{'rotateOutUpRight': i == 0,'rotateInUpRight': i == currentLabels.length-1,'fadeInUp': i==1 }" ><em [ngStyle]="{'background-color':'rgba(0,0,0,'+ (1-i/currentLabels.length)*0.8 +')','color':'rgba(255,255,255,'+ (1-i/currentLabels.length)*1.2 +')'}">{{item}}</em></span>
-<!--             <span class="dht-tag"><em>are you ok</em></span>
-            <span class="dht-tag"><em>want cry</em></span>
-            <span class="dht-tag"><em>yayayayyaya</em></span> -->
+        <div class="detail-header-tags" >
+            <ng-container *ngFor="let item of currentLabels;let i = index;">
+                <span class="dht-tag animated"  [ngClass]="styleMethod01(i)" ><em [ngStyle]="{'background-color':'rgba(0,0,0,'+ (1-i/currentLabels.length)*0.8 +')','color':'rgba(255,255,255,'+ (1-i/currentLabels.length)*1.2 +')'}" >{{item}}</em></span>
+            </ng-container>
         </div>
         <!-- <span class="detail-header-title">标题xxxxxxx - RIVERS</span>
         <div class="detail-header-music">

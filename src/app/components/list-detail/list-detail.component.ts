@@ -17,6 +17,9 @@ export class ListDetailComponent implements OnInit {
   private currentLabels : Array<string> = [];
   private labelIndex: number = 5;
   private labelClass: any = "";
+  private lableOnoff: boolean = true;
+
+
 
   @ViewChild('scroll') scrollEl: ElementRef;
   @Input('detailLabels') lables: Array<string>;
@@ -42,7 +45,7 @@ export class ListDetailComponent implements OnInit {
      this.labelAnimation();
   }
 
-
+  // label 标签 定时循环动画
   labelAnimation(): void{
       let timer: any = setInterval(() => {
           this.labelIndex++;
@@ -51,7 +54,15 @@ export class ListDetailComponent implements OnInit {
       },2000);
   }
 
-
+  // 标签运动方法
+  styleMethod01(i): any {
+      const _class = { 
+          'rotateOutUpRight': i == 0,
+          'rotateInUpRight': i == this.currentLabels.length - 1,
+          'fadeInUp': i == 3
+      };
+      return _class;
+  }
 
   // 执行label 无缝滚动动效动画
   activeLableMotion(): void {
@@ -63,10 +74,6 @@ export class ListDetailComponent implements OnInit {
   initLbales(): void{
       let len: number = 5;
       this.currentLabels = tool.getTargetArrByIndex(this.lables,this.labelIndex,len);
-      //清空样式
-     /* $('.detail-header-tags').children().each(function(){
-          $(this).removeClass('fadeInUp');
-      });*/
   }
 
 
