@@ -9,6 +9,7 @@ import { ListPageComponent } from './pages/list-page/list-page.component';
 import { ListBoxComponent } from './components/list-box/list-box.component';
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
 import { BetterScrollComponent } from './components/better-scroll/better-scroll.component';
+import { MusicBoxComponent } from './components/music-box/music-box.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { BetterScrollComponent } from './components/better-scroll/better-scroll.
     ListPageComponent,
     ListBoxComponent,
     ListDetailComponent,
-    BetterScrollComponent
+    BetterScrollComponent,
+    MusicBoxComponent
   ],
   imports: [
     BrowserModule,
